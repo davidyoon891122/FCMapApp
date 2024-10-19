@@ -1,6 +1,7 @@
 package com.example.fcmapapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,10 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -27,6 +32,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.mapView.onCreate(savedInstanceState)
 
         binding.mapView.getMapAsync(this)
+
+        SearchRepository.getGoodRestaurants("서울").enqueue(object : Callback<SearchResult> {
+            override fun onResponse(p0: Call<SearchResult>, p1: Response<SearchResult>) {
+                Log.e("aa", "${p1.body().toString()}")
+
+            }
+
+            override fun onFailure(p0: Call<SearchResult>, p1: Throwable) {
+                p1.printStackTrace()
+            }
+        })
 
     }
 
