@@ -12,4 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <SearchView
+        android:id="@+id/searchView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
